@@ -1,0 +1,26 @@
+   --- mesh info: ---
+   -- No. of cell verts
+           N :       total (    interior  +        bdry )
+           4 :          10 (           0  +          10 )
+           5 :          38 (          10  +          28 )
+           6 :         261 (         247  +          14 )
+       total :         309 (         257  +          52 )
+   -- No. of node neighbors (connected nodes)
+           N :       total (    interior  +        bdry )
+           3 :         616 (         564  +          52 )
+       total :         616 (         564  +          52 )
+   -- Edge lengths  (         924  edges in total)
+           shortest  1.1919E-02,   shortest/average  5.8993E-02
+           average   2.0203E-01
+           longest   5.4106E-01,    longest/average  2.6781E+00
+   -- Cell volumes  (         309  cells in total)
+           total     2.8163E+01
+           smallest  4.2922E-02,   smallest/average  4.7094E-01
+           average   9.1141E-02
+           biggest   1.3291E-01,    biggest/average  1.4583E+00
+   ------------------
+   -- Cell volumes - only cells centered closer than    2.0000000000000000        (          97  cells)
+           total     8.7300E+00
+           smallest  9.0000E-02,   smallest/average  1.0000E+00
+           average   9.0000E-02
+           biggest   9.0000E-02,    biggest/average  1.0000E+00
