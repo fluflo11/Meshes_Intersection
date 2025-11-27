@@ -4,11 +4,9 @@
 
 Node parser is directly implemented as a static function of the Point2D class.
 ### Topology
-Topology parser is also implemented as a static function of the Topology class, but it returns a vector and not a Topology. 
-Example : 
+Topology parser is also implemented as a static function of the Topology class. It directly creates a Topology object. Use : 
 ```cpp
-std::vector<Cell> my_cells = Topology::getInputTopology(input_file);
-Topology my_topology(my_cells);
+Topology my_topology = Topology::getInputTopology(input_file);
 my_topology.printTopology();
 ```
 ## Author
