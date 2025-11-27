@@ -21,6 +21,7 @@ struct CellTemp{
     int id;
     int boundary;
     int no_vertices;
+    int no_neighbors;
 };
 
 class Cell{
@@ -28,10 +29,12 @@ public:
     int id;
     int boundary_id;
     std::vector<int> indices;
-    Cell(int id_param, int boudary_id_param, std::vector<int> indices_param){
+    std::vector<int> neighbors_indices;
+    Cell(int id_param, int boudary_id_param, std::vector<int> indices_param, std::vector<int> neighbors_indices_param){
         id = id_param;
         boundary_id = boudary_id_param;
         indices = indices_param;
+        neighbors_indices = neighbors_indices_param;
     }
     Cell(){
         id = -1;
@@ -42,11 +45,15 @@ public:
 class Topology{
 public: 
     std::vector<Cell> cells;
-    Topology(std::vector<Cell> cells_param){
+    std::vector<int> boundaries_idxs;
+    Topology(std::vector<Cell> cells_param,std::vector<int> boundaries_idxs_param){
         cells = cells_param;
+        boundaries_idxs = boundaries_idxs_param;
     }
-    static std::vector<Cell> getInputTopology(const std::string& file_path);
+    Topology(){}
+    static Topology getInputTopology(const std::string& file_path);
     void printTopology();
+    //bool consistencyCheck(); //TODO
 };
 
 

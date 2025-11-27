@@ -10,8 +10,7 @@ int main(){
    
 
     input_file = "resources/meshes_for_FR/unitsqmeshes/unitsqmesh_hexreg_000094_midedge/input_topo.dat";
-    std::vector<Cell> my_cells = Topology::getInputTopology(input_file);
-    Topology my_topology(my_cells);
+    Topology my_topology = Topology::getInputTopology(input_file);
     my_topology.printTopology();
     
     return 0;

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 #include <stdexcept>
+#include <limits>
 
 /**
  * ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -78,11 +79,12 @@ void ignoreLine(std::ifstream& in) {
 /**
  * Parse a input_topo.dat file into a Topology object
  */
-std::vector<Cell> Topology::getInputTopology(const std::string& file_path){
+Topology Topology::getInputTopology(const std::string& file_path){
     std::ifstream in(file_path);
     if(!in) std::cerr << file_path << " was not found";
 
-    std::vector<Cell> result;
+    std::vector<Cell> result_cells;
+    std::vector<int> result_boundaries_idxs;
 
     int no_cells, no_nodes, max_neighbors;
 
@@ -111,7 +113,7 @@ std::vector<Cell> Topology::getInputTopology(const std::string& file_path){
     for(int i=0;i<no_cells; i++){
         int id, boundary, no_vertices, no_neighbors;
         in >> id >> boundary >> no_vertices >> no_neighbors;
-        temp_cells.push_back({id,boundary,no_vertices});
+        temp_cells.push_back({id,boundary,no_vertices,no_neighbors});
         ignoreLine(in);
     }
     ignoreLine(in); //Cell-node and cell-cell connectivity
@@ -122,6 +124,8 @@ std::vector<Cell> Topology::getInputTopology(const std::string& file_path){
         new_cell.boundary_id = temp_cells[i].boundary;
 
         int no_vertices = temp_cells[i].no_vertices;
+        int no_neighbors = temp_cells[i].no_neighbors;
+
         int read_id;
         in >> read_id; 
 
@@ -131,10 +135,28 @@ std::vector<Cell> Topology::getInputTopology(const std::string& file_path){
             new_cell.indices.push_back(node_id - 1); //"All IDs and lists start with 1 (Fortran-style, not C, sorry...)" :(
         }
 
+        for(int j=0; j<no_neighbors; j++){
+            int neighbor_idx;
+            in >> neighbor_idx;
+            new_cell.neighbors_indices.push_back(neighbor_idx-1); //Same as above here :p
+        }
+
         ignoreLine(in);
-        result.push_back(new_cell);
+        result_cells.push_back(new_cell);
     }
 
+    int no_boudary_nodes;
+    in >> no_boudary_nodes;
+
+    ignoreLine(in); // | number and list of boundary nodes
+
+    for(int i=0; i<no_boudary_nodes; i++){
+        int node_id;
+        in >> node_id;
+        result_boundaries_idxs.push_back(node_id-1);
+    }       
+
+    Topology result(result_cells,result_boundaries_idxs);
     return result;
 }
 
@@ -147,6 +169,10 @@ void Topology::printTopology(){
                 std::cout << i << " ";
             }
             std::cout << "\n";
+        }
+        std::cout<< "boudaries indexes : " << "\n";
+        for(int i: boundaries_idxs){
+            std::cout<< i << " ";
         }
     }
 }
