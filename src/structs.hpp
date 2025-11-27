@@ -13,6 +13,9 @@ public :
         y = y_param;
         id = id_param;
     }
+    /**
+     * Returns a list of all the nodes of an input_nodes.dat file. 
+     */
     static std::vector<Point2D> getInputNodes(const std::string& file_path);
     static void printInputNodes(std::vector<Point2D> vect);
 };
@@ -51,9 +54,20 @@ public:
         boundaries_idxs = boundaries_idxs_param;
     }
     Topology(){}
+
+    /**
+     * Parse a input_topo.dat file into a Topology object
+     */
     static Topology getInputTopology(const std::string& file_path);
     void printTopology();
-    //bool consistencyCheck(); //TODO
+    bool consistencyCheck(); //Like a vibecheck but with consistency 
+};
+
+class VTKExporter{ //To help to visualize data, could also use GNU or MatLab
+public: 
+    Topology topology;
+    std::vector<Point2D> nodes;
+    bool exportToVTK(const std::string& file_path);
 };
 
 

@@ -176,3 +176,22 @@ void Topology::printTopology(){
         }
     }
 }
+
+bool Topology::consistencyCheck(){
+    bool result = true;
+    //TODO
+    return result;
+}
+
+
+/**
+ * --------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * Export to VTK
+ * --------------------------------------------------------------------------------------------------------------------------------------------------------------
+ */
+
+bool VTKExporter::exportToVTK(const std::string& file_path){
+    //TODO, I need to digest the VTK documentation
+    return true;
+}
+
