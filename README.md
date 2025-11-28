@@ -21,9 +21,10 @@ I went through a lot of documentation to find the algorithm I wanted to use, I d
 
 ## Sources 
 
-https://alienryderflex.com/polygon/
-*Numerical Recipes Third Edition* by Saul Teukolsky
-https://www.cnblogs.com/chriscai/archive/2009/12/10/1620932.html
+* https://alienryderflex.com/polygon/
+* *Numerical Recipes Third Edition* by Saul Teukolsky
+* https://www.cnblogs.com/chriscai/archive/2009/12/10/1620932.html
 
 ![](thinking-cat.gif)
+
 
