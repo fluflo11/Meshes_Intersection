@@ -14,5 +14,5 @@ run_winding:
 
 
 clean: 
-	rm list_nodes
+	rm list_nodesandtopo
 	rm auto_test
