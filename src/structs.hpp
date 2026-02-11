@@ -61,12 +61,5 @@ public:
     bool consistencyCheck(); //Like a vibecheck but with consistency 
 };
 
-class VTKExporter{ //To help to visualize data, could also use GNU or MatLab
-public: 
-    Topology topology;
-    std::vector<Point2D> nodes;
-    bool exportToVTK(const std::string& file_path);
-};
-
 
 #endif

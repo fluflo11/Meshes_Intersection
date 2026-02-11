@@ -56,31 +56,30 @@ bool Utils::winding(const Point2D& p, const std::vector<Point2D>& poly) {
             if (p2.y > p.y) {      
                 if (isLeft(p1, p2, p) > 0) {
                     wn++;
-                    std::cout << "CASE 1 : P1.y <= P.y and P2.y > P.y and isLeft" << std::endl;
+                    //std::cout << "CASE 1 : P1.y <= P.y and P2.y > P.y and isLeft" << std::endl;
                 }
-                else {
+                /**else {
                     std::cout << "CASE 2 : P1.y <= P.y and P2.y > P.y and NOT isLeft" << std::endl;
-                }
+                }**/
             }
-            else {
+            /**else {
                 std::cout << "CASE 3 : P1.y <= P.y and P2.y <= P.y" << std::endl;
-            }
+            }**/
         }
         else {                        
             if (p2.y <= p.y) {     
                 if (isLeft(p1, p2, p) < 0) {
                     wn--;
-                    std::cout << "CASE 4 : P2.y <= P.y and isLeft" << std::endl;
+                    //std::cout << "CASE 4 : P2.y <= P.y and isLeft" << std::endl;
                 }
-                else {
+                /**else {
                     std::cout << "CASE 5 : P2.y <= P.y and NOT isLeft" << std::endl;
-                }
+                }**/
             }
-            else {
+            /**else {
                 std::cout << "CASE 6 : P1.y > P.y and P2.y > P.y " << std::endl;
-            }
+            }**/
         }
-        
     }
     (wn != 0) ? (std::cout << "inside" << std::endl):(std::cout << "outside" << std::endl);
     return wn != 0;

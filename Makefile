@@ -2,7 +2,7 @@ CXX = g++
 FLAGS = -o
 
 # Inputs
-FILES = src/structs.cpp src/utils.cpp
+FILES = src/structs.cpp src/utils.cpp src/VTK_Tools.cpp
 TEST_LIST_NODES_TOPOLOGY = src/main.cpp
 TEST_WINDING = src/auto_test_winding.cpp
 TEST_INTERSECTION = src/auto_test_intersection.cpp
