@@ -20,10 +20,10 @@ bool VTK::VTK_Exporter::exportVTK(const std::string& file, const std::string& ti
     out << "ASCII" << std::endl;
     out << "DATASET UNSTRUCTURED_GRID" << std::endl;
     
-    out << "POINTS " << nodes.size() << " float" << std::endl;
+    out << "POINTS " << nodes.size() << "double" << std::endl;
 
     for(const auto& p: nodes){
-        out << p.x << " " << p.y << std::endl;
+        out << p.x << " " << p.y << " " << "0.0" << std::endl;
     }
 
     int list_size = 0;
@@ -45,7 +45,7 @@ bool VTK::VTK_Exporter::exportVTK(const std::string& file, const std::string& ti
     /**
      * In vtk 5 = triangle 9 = rectangle 7 = any
      */
-    out << "CELL_TYPE " << topology.cells.size() << std::endl;
+    out << "CELL_TYPES " << topology.cells.size() << std::endl;
     for(const auto& cell: topology.cells){
         if(cell.indices.size() == 3) out << "5" << std::endl;
         if(cell.indices.size() == 4) out <<  "9" << std::endl;
