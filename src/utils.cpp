@@ -6,8 +6,11 @@
 #include <math.h>
 
 
-//TODO : Comments
-
+/**
+ * -----------------------------------------------------------------------------------------------------
+ * Small toolbox functions, everything is pretty self explanatory here
+ * -----------------------------------------------------------------------------------------------------
+ */
 double Utils::distance(const Point2D& a, const Point2D& b){
     double dd = 0.0;
     dd += (b.x - a.x)*(b.x - a.x);
@@ -46,8 +49,9 @@ double Utils::crossProduct(const std::tuple<double,double>& a, const std::tuple<
 inline double isLeft(const Point2D& P1, const Point2D& P2, const Point2D& P) {
     return (P2.x - P1.x) * (P.y - P1.y) - (P.x - P1.x) * (P2.y - P1.y);
 }
+
 /**
- * Still need to test it
+ * Checks if a point is located inside a polygon or not
  */
 bool Utils::winding(const Point2D& p, const std::vector<Point2D>& poly) {
     int wn = 0;
@@ -59,32 +63,19 @@ bool Utils::winding(const Point2D& p, const std::vector<Point2D>& poly) {
             if (p2.y > p.y) {      
                 if (isLeft(p1, p2, p) > 0) {
                     wn++;
-                    //std::cout << "CASE 1 : P1.y <= P.y and P2.y > P.y and isLeft" << std::endl;
                 }
-                /**else {
-                    std::cout << "CASE 2 : P1.y <= P.y and P2.y > P.y and NOT isLeft" << std::endl;
-                }**/
             }
-            /**else {
-                std::cout << "CASE 3 : P1.y <= P.y and P2.y <= P.y" << std::endl;
-            }**/
         }
         else {                        
             if (p2.y <= p.y) {     
                 if (isLeft(p1, p2, p) < 0) {
                     wn--;
-                    //std::cout << "CASE 4 : P2.y <= P.y and isLeft" << std::endl;
                 }
-                /**else {
-                    std::cout << "CASE 5 : P2.y <= P.y and NOT isLeft" << std::endl;
-                }**/
             }
-            /**else {
-                std::cout << "CASE 6 : P1.y > P.y and P2.y > P.y " << std::endl;
-            }**/
         }
     }
-    (wn != 0) ? (std::cout << "inside" << std::endl):(std::cout << "outside" << std::endl);
+    // For debug
+    //(wn != 0) ? (std::cout << "inside" << std::endl):(std::cout << "outside" << std::endl);
     return wn != 0;
 }
 
@@ -203,7 +194,6 @@ std::vector<Point2D> Utils::getCellPolygon(const Cell& cell, const std::vector<P
     return polygon;
 }
 
-
 void Utils::computeSupermesh(const std::vector<std::vector<Point2D>>& polysA, 
                              const std::vector<AABB>& boxesA,
                              const std::vector<std::vector<Point2D>>& polysB, 
@@ -212,7 +202,7 @@ void Utils::computeSupermesh(const std::vector<std::vector<Point2D>>& polysA,
                              std::vector<Point2D>& result_nodes,
                              bool debug) {
     
-    // Nettoyage des sorties au cas où
+    //
     result_topo.cells.clear();
     result_nodes.clear();
 

@@ -54,6 +54,10 @@ bool VTK::VTK_Exporter::exportVTK(const std::string& file, const std::string& ti
         }
     }
 
+    /**
+     * 
+    */
+
     //Maybe write cell data here to easily visualize differnt cells 
 
     std::cout << "End of the export, file produced : " << file << std::endl;

@@ -5,7 +5,7 @@
 #include "structs.hpp"
 
 /**
- * 
+ * VTK tool to export meshes as VTK files
  */
 namespace VTK{
 

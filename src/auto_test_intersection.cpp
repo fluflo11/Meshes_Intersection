@@ -4,9 +4,6 @@
 
 //Tests automatically generated, not 
 
-// Déclare la fonction (si elle n’est pas dans un header)
-std::vector<Point2D> getPolygonIntersection(const std::vector<Point2D>& poly_1, const std::vector<Point2D>& poly_2);
-
 int main() {
 
     std::vector<Point2D> poly_1 = {
@@ -33,8 +30,8 @@ int main() {
     for(const auto& p : poly_2)
         std::cout << "(" << p.x << ", " << p.y << ")\n";
 
-    // --- Calcul intersection ---
-    std::vector<Point2D> inter = getPolygonIntersection(poly_1, poly_2);
+    // Computing intersection
+    std::vector<Point2D> inter = Utils::getPolygonIntersection(poly_1, poly_2);
 
     std::cout << "\n=== Intersection ===\n";
 
@@ -44,8 +41,6 @@ int main() {
         for(const auto& p : inter)
             std::cout << "(" << p.x << ", " << p.y << ")\n";
     }
-
-    
 
     return 0;
 }

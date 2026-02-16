@@ -52,7 +52,7 @@ double getPolygonArea(const std::vector<Point2D>& polygon);
 std::vector<Point2D> getCellPolygon(const Cell& cell, const std::vector<Point2D>& nodes);
 
 /**
- * 
+ * Double for loop iterating through all polygons that have overlapping bounding boxes
  */
 void computeSupermesh(const std::vector<std::vector<Point2D>>& polysA, 
                           const std::vector<AABB>& boxesA,

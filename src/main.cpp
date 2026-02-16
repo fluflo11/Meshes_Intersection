@@ -50,7 +50,6 @@ int main(int argc, char *argv[]) {
         std::cout << " -> Mesh B: " << topoB.cells.size() << " cells." << std::endl;
     }
 
-
     //Here I measure time but its only to get a small idea of how good this is performance wise
     auto start_time = std::chrono::high_resolution_clock::now();
 
@@ -85,8 +84,8 @@ int main(int argc, char *argv[]) {
     Topology result_topo;
     std::vector<Point2D> result_nodes; 
     
-    Utils::computeSupermesh(polygons_A, boxes_A, polygons_B, boxes_B, result_topo, result_nodes, true);
-    
+    Utils::computeSupermesh(polygons_A, boxes_A, polygons_B, boxes_B, result_topo, result_nodes, debug);
+
     if(debug){
         auto end_time = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration = end_time - start_time;

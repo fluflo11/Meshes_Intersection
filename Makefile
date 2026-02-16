@@ -31,7 +31,9 @@ build_tests:
 	$(CXX) $(FLAGS) $(INTERSECTION) $(TEST_INTERSECTION) $(FILES)
 
 run:
-	@echo Running supermesh
+	./$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B)
+
+run_debug:
 	./$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B) -d
 
 run_tests:
