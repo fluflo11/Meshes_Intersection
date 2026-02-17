@@ -24,7 +24,6 @@ if you are on linux, or
 ```
 On windows.
 
-
 ## Incoming features
 
 - Compiling this as a shared library
@@ -65,6 +64,7 @@ I went through a lot of documentation to find the algorithm I wanted to use, I d
 * https://www.cnblogs.com/chriscai/archive/2009/12/10/1620932.html
 
 ![](thinking-cat.gif)
+
 
 
 
