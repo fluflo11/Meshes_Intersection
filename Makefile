@@ -1,5 +1,25 @@
 CXX = g++
+
+ifeq ($(OS),Windows_NT)
+    EXT = .exe
+    RM = rm -f
+	RUN_PREFIX = .
+else
+    EXT = 
+    RM = rm -f
+    RUN_PREFIX = ./
+endif
+
+EXEC_NAME = supermesh
+WINDING_NAME = auto_test_winding
+INTERSECTION_NAME = auto_test_intersection
+
+EXEC = $(EXEC_NAME)$(EXT)
+WINDING = $(WINDING_NAME)$(EXT)
+INTERSECTION = $(INTERSECTION_NAME)$(EXT)
+
 FLAGS = -o
+SHARED_FLAGS = -shared
 
 # Inputs
 FILES = src/structs.cpp src/utils.cpp src/VTK_Tools.cpp
@@ -7,12 +27,9 @@ MAIN = src/main.cpp
 TEST_WINDING = src/auto_test_winding.cpp
 TEST_INTERSECTION = src/auto_test_intersection.cpp
 
-# Outputs
-EXEC = supermesh
-WINDING = auto_test_winding
-INTERSECTION = auto_test_intersection
-
-# Files paths
+# Outputs / Paths
+OUTPUT_DIR = resources/VTK/
+OUTPUT_FILE = result.vtk
 
 INPUT_NODES_A = resources/meshes_for_FR/unitsqmeshes/unitsqmesh_hexreg_000094_midedge/input_nodes.dat 
 INPUT_NODES_B = resources/meshes_for_FR/unitsqmeshes/unitsqmesh_hexreg_000449_flipped_nobd/input_nodes.dat
@@ -30,20 +47,24 @@ build_tests:
 	$(CXX) $(FLAGS) $(WINDING) $(TEST_WINDING) $(FILES)
 	$(CXX) $(FLAGS) $(INTERSECTION) $(TEST_INTERSECTION) $(FILES)
 
+# Utilisation de $(RUN_PREFIX) pour gérer le ./
 run:
-	./$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B)
+	$(RUN_PREFIX)/$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B)
 
 run_debug:
-	./$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B) -d
+	$(RUN_PREFIX)/$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B) -d
+
+run_custom_path:
+	$(RUN_PREFIX)/$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B) $(OUTPUT_DIR)$(OUTPUT_FILE)
+
+run_all:
+	$(RUN_PREFIX)/$(EXEC) $(INPUT_NODES_A) $(INPUT_TOPO_A) $(INPUT_NODES_B) $(INPUT_TOPO_B) $(OUTPUT_DIR)$(OUTPUT_FILE) -d
 
 run_tests:
 	@echo test_winding
-	./$(WINDING)
+	$(RUN_PREFIX)/$(WINDING)
 	@echo test_intersection
-	./$(INTERSECTION)
+	$(RUN_PREFIX)/$(INTERSECTION)
 
-#Maybe can check which file exists here before deleting
 clean:
-	rm $(EXEC)
-	rm $(WINDING)
-	rm $(INTERSECTION)
+	$(RM) $(EXEC) $(WINDING) $(INTERSECTION)
