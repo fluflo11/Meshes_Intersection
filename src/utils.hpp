@@ -2,6 +2,7 @@
 #define UTILS_HPP
 #include "structs.hpp"
 #include <tuple>
+#include "api.hpp"
 
 //TODO : Comments 
 
@@ -42,9 +43,9 @@ double crossProduct(const std::tuple<double,double>& a, const std::tuple<double,
  */
 bool winding(const Point2D& p, const std::vector<Point2D>& poly);
 
-std::vector<Point2D> getPolygonIntersection(const std::vector<Point2D>& poly1, const std::vector<Point2D>& poly2);
+SUPERMESH_API std::vector<Point2D> getPolygonIntersection(const std::vector<Point2D>& poly1, const std::vector<Point2D>& poly2);
 
-double getPolygonArea(const std::vector<Point2D>& polygon);
+SUPERMESH_API double getPolygonArea(const std::vector<Point2D>& polygon);
 
 /**
  * Convert a size a cell into a polygon
@@ -54,7 +55,7 @@ std::vector<Point2D> getCellPolygon(const Cell& cell, const std::vector<Point2D>
 /**
  * Double for loop iterating through all polygons that have overlapping bounding boxes
  */
-void computeSupermesh(const std::vector<std::vector<Point2D>>& polysA, 
+SUPERMESH_API void computeSupermesh(const std::vector<std::vector<Point2D>>& polysA, 
                           const std::vector<AABB>& boxesA,
                           const std::vector<std::vector<Point2D>>& polysB, 
                           const std::vector<AABB>& boxesB,
@@ -67,7 +68,7 @@ void computeSupermesh(const std::vector<std::vector<Point2D>>& polysA,
 @param result_polygons Ensure that this is empty 
 @param result_boxes Ensure that this is empty
 */
-void precomputesPolysAndAABBs(const Topology& topology, 
+SUPERMESH_API void precomputesPolysAndAABBs(const Topology& topology, 
                                 const std::vector<Point2D>& nodes, 
                                 std::vector<std::vector<Point2D>>& result_polygons, 
                                 std::vector<AABB>& result_boxes);

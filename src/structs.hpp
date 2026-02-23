@@ -4,8 +4,9 @@
 #include <string>
 #include <limits>
 #include <iostream>
+#include "api.hpp"
 
-class Point2D{
+class SUPERMESH_API Point2D{
 public :
     const double x;
     const double y;
@@ -27,7 +28,7 @@ struct CellTemp{
     int no_neighbors;
 };
 
-class Cell{
+class SUPERMESH_API Cell{
 public:
     int id;
     int boundary_id;
@@ -45,7 +46,7 @@ public:
     }
 };
 
-class Topology{
+class SUPERMESH_API Topology{
 public: 
     std::vector<Cell> cells;
     std::vector<int> boundaries_idxs;
@@ -66,7 +67,7 @@ public:
 /**
  * 
  */
-class AABB {
+class SUPERMESH_API AABB {
 public: 
     double x_min;
     double x_max;

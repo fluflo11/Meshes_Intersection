@@ -1,15 +1,19 @@
 CXX = g++
+OPT = -O3
+CXX_FLAGS = -Wall $(OPT) -fopenmp
 
 ifeq ($(OS),Windows_NT)
     EXT = .exe
 	SHARED_EXT = .dll
     RM = rm -f
 	RUN_PREFIX = .
+	SHARED_FLAGS_OS = -shared
 else
     EXT = 
 	SHARED_EXT = .so
     RM = rm -f
     RUN_PREFIX = ./
+	SHARED_FLAGS_OS = -shared -fPIC
 endif
 
 EXEC_NAME = supermesh
@@ -21,8 +25,9 @@ SHARED_LIB = $(EXEC_NAME)$(SHARED_EXT)
 WINDING = $(WINDING_NAME)$(EXT)
 INTERSECTION = $(INTERSECTION_NAME)$(EXT)
 
-FLAGS = -o
-SHARED_FLAGS = -shared -fPIC -o
+#Compilation flags
+FLAGS = $(OPT) -o
+SHARED_FLAGS = $(SHARED_FLAGS_OS) $(CXX_FLAGS) -o
 
 # Inputs
 FILES = src/structs.cpp src/utils.cpp src/VTK_Tools.cpp
