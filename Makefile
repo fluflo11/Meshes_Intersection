@@ -7,7 +7,7 @@ ifeq ($(OS),Windows_NT)
 	SHARED_EXT = .dll
     RM = rm -f
 	RUN_PREFIX = .
-	SHARED_FLAGS_OS = -shared
+	SHARED_FLAGS_OS = -shared -DSUPERMESH_EXPORTS
 else
     EXT = 
 	SHARED_EXT = .so
