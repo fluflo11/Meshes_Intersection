@@ -20,7 +20,7 @@ bool VTK::VTK_Exporter::exportVTK(const std::string& file, const std::string& ti
     out << "ASCII" << std::endl;
     out << "DATASET UNSTRUCTURED_GRID" << std::endl;
     
-    out << "POINTS " << nodes.size() << "double" << std::endl;
+    out << "POINTS " << nodes.size() << " double" << std::endl;
 
     for(const auto& p: nodes){
         out << p.x << " " << p.y << " " << "0.0" << std::endl;
